@@ -17,16 +17,15 @@ const Login = () => {
   const GoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, provider);
+    
       console.log("User signed in");
-      let data = { email };
-      const handsend = await sendWelcomeEmail(email)
-      console.log("hand sen d"+handsend);
+    
       nav("/");
-      alert("signup successfull");
+      alert("login successfull");
       localStorage.setItem("user", "user logged in");
     } catch (error) {
       console.error("Error signing in:", error);
-      setError("Failed to sign up: " + err.message);
+      setError("Failed to signin: " + err.message);
       alert(err.message);
       console.log(err.message);
     }
@@ -53,12 +52,13 @@ const Login = () => {
       } else {
         console.log("No user data found in Firestore.");
       }
-
+      // const handsend = await sendWelcomeEmail(userDoc.data().email)
+      // console.log("hand sen d"+handsend);
       
       alert("Login Successful");
       localStorage.setItem("user", JSON.stringify(userDoc.data()));
 
-      nav("/");
+      // nav("/");
       setEmail("");
       setPassword("");
     } catch (err) {
@@ -178,3 +178,4 @@ const Login = () => {
 };
 
 export default Login;
+
