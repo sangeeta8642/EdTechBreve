@@ -55,7 +55,7 @@ const addContact = async (email) => {
 
   const contactData = {
     email: email,
-    listIds: [3], // Replace with your actual list ID
+    listIds: [3],
     updateEnabled: false, 
   };
 
@@ -90,7 +90,6 @@ const handleUserActions = async (email, userName, userLastName) => {
   );
 
   try {
-    // Add contact to Brevo
     const addContactResponse = await addContact(email);
     if (!addContactResponse) {
       console.error("Failed to add contact. Aborting email send.");
