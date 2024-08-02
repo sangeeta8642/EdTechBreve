@@ -2,11 +2,10 @@ import axios from "axios";
 
 // API Endpoints
 const brevoWorkflowEndpoint = `https://api.brevo.com/v3/smtp/email`;
-// const brevoWorkflowEndpoint = 'https://api.brevo.com/v3/processes/triggerWorkflow';
 const brevoContactEndpoint = "https://api.brevo.com/v3/contacts";
 
 // API Key
-const apiKey = import.meta.env.VITE_API_KEY; // Replace with your actual Brevo API key
+const apiKey = import.meta.env.VITE_API_KEY;
 
 // Function to send a welcome email using a Brevo workflow
 const sendWelcomeEmail = async (userEmail) => {
@@ -23,7 +22,7 @@ const sendWelcomeEmail = async (userEmail) => {
     headers: {
       "X-Mailin-custom":
         "custom_header_1:custom_value_1|custom_header_2:custom_value_2|custom_header_3:custom_value_3", // Custom headers
-      charset: "iso-8859-1", // Character set
+      charset: "iso-8859-1", 
     },
   };
 
@@ -38,7 +37,7 @@ const sendWelcomeEmail = async (userEmail) => {
 
     if (response.status === 201) {
       console.log("Welcome email sent successfully!");
-      return response.data; // Return the response data for further processing
+      return response.data;
     } else {
       console.error("Failed to send welcome email:", response.statusText);
     }
@@ -57,7 +56,7 @@ const addContact = async (email) => {
   const contactData = {
     email: email,
     listIds: [3], // Replace with your actual list ID
-    updateEnabled: false, // Whether to update the contact if it already exists
+    updateEnabled: false, 
   };
 
   try {
@@ -71,7 +70,7 @@ const addContact = async (email) => {
 
     if (response.status === 201) {
       console.log("Contact added successfully!");
-      return response.data; // Return the response data for further processing
+      return response.data;
     } else {
       console.error("Failed to add contact:", response.statusText);
     }
@@ -95,7 +94,6 @@ const handleUserActions = async (email, userName, userLastName) => {
     const addContactResponse = await addContact(email);
     if (!addContactResponse) {
       console.error("Failed to add contact. Aborting email send.");
-      // console.error(addContactResponse);
       return;
     }
 
